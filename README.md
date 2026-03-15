@@ -1,4 +1,7 @@
 # Correlation and regression for data analysis
+
+# date : 11/02/2026
+
 # Aim : 
 
 To analyse given data using coeffificient of correlation and regression line
@@ -21,9 +24,62 @@ If y represents the dependent variable and x the independent variable, this rela
 
 # Program :
 
-![image](https://github.com/ramjan1729/Correlation_Regression/assets/103921593/9eb48cbf-8ca3-4cd9-8440-ff45fd98333e)
+```
 
+DEVELOPED BY: NAVEEN JAISANKER
+REGISTER NO: 212224110039
+
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+
+x = [int(i) for i in input("Enter X values: ").split()]
+y = [int(i) for i in input("Enter Y values: ").split()]
+
+N = len(x)
+
+Sx = sum(x)
+Sy = sum(y)
+Sxy = sum(x[i]*y[i] for i in range(N))
+Sx2 = sum(i**2 for i in x)
+Sy2 = sum(i**2 for i in y)
+
+# Correlation coefficient
+r = (N*Sxy - Sx*Sy) / (math.sqrt(N*Sx2 - Sx**2) * math.sqrt(N*Sy2 - Sy**2))
+print("Correlation coefficient =", round(r,3))
+
+# Regression (Y on X)
+byx = (N*Sxy - Sx*Sy) / (N*Sx2 - Sx**2)
+xmean = Sx/N
+ymean = Sy/N
+
+print("Regression line (Y on X):")
+print("y =", round(ymean,3), "+", round(byx,3), "(x -", round(xmean,3), ")")
+
+# Plot
+plt.scatter(x,y)
+
+def reg_line(x):
+    return ymean + byx*(x - xmean)
+
+x1 = np.linspace(min(x), max(x), 50)
+y1 = reg_line(x1)
+
+plt.plot(x1,y1)
+plt.xlabel("X data")
+plt.ylabel("Y data")
+plt.title("Regression Line")
+plt.show()
+```
+
+# Output
+
+![Screenshots](ss_3.png)
+
+![Screenshots](ss_3_2.png)
 
 # Result
 
-# Output 
+The Correlation and regression for data analysis of objects from feeder using probability distribution are calculated.
+
+
